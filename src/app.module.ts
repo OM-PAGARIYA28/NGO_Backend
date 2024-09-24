@@ -8,10 +8,11 @@ import { AboutusModule } from './aboutus/aboutus.module';
 import { CounterbarModule } from './counterbar/counterbar.module';
 import { UpcomingworkModule } from './upcomingwork/upcomingwork.module';
 import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [DatabaseModule, CampaignModule, UsersModule, AuthModule,ConfigModule.forRoot({isGlobal:true}), AboutusModule, CounterbarModule, UpcomingworkModule],
   controllers: [AppController],
-  providers: [],
+  providers: [AppService],
 })
 export class AppModule {}

@@ -1,22 +1,22 @@
 {
-    "version":2,
-    "builds":[
+    "version": 2,
+    "builds": [
         {
-            "src":"src/main.ts",
+            "src": "src/main.ts",
             "use": "@vercel/node",
             "config": {
-        "includeFiles": [
-          "prisma/schema.prisma",
-          "node_modules/.prisma/client/**"
-        ]
-      }
+                "includeFiles": [
+                    "prisma/schema.prisma",
+                    "node_modules/.prisma/client/**"
+                ]
+            }
         }
     ],
-    "routes":[
+    "routes": [
         {
-            "src":"/(.*)",
-            "dest":"dist/main.js",
-            "methods":[
+            "src": "/(.*)",
+            "dest": "dist/main.js",
+            "methods": [
                 "GET",
                 "POST",
                 "PUT",

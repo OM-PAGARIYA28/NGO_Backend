@@ -7,10 +7,11 @@ import { ConfigModule } from '@nestjs/config';
 import { AboutusModule } from './aboutus/aboutus.module';
 import { CounterbarModule } from './counterbar/counterbar.module';
 import { UpcomingworkModule } from './upcomingwork/upcomingwork.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [DatabaseModule, CampaignModule, UsersModule, AuthModule,ConfigModule.forRoot({isGlobal:true}), AboutusModule, CounterbarModule, UpcomingworkModule],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

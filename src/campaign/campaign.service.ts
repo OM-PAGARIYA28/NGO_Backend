@@ -15,7 +15,7 @@ export class CampaignService {
         title:createCampaignDto.title,
         description:createCampaignDto.description,
         photo:createCampaignDto.photo,
-        amountToBeRaised: createCampaignDto.amountToBeRaised
+        amountToBeRaised: Number(createCampaignDto.amountToBeRaised)
       }
    
     return this.databaseService.campaign.create({data});
@@ -48,7 +48,10 @@ export class CampaignService {
       }
       return await this.databaseService.campaign.update({
         where: { id: id },
-        data: updateCampaignDto,
+        data: {
+          ...updateCampaignDto,
+          amountToBeRaised: updateCampaignDto.amountToBeRaised ? Number(updateCampaignDto.amountToBeRaised) : existingCampaign.amountToBeRaised,
+        },
       });
     } catch (error) {
       return { message: 'An error occurred during the update', error: error.message };

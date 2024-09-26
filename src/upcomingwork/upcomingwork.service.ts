@@ -14,7 +14,7 @@ export class UpcomingworkService {
             title:createUpcomingworkDto.title,
             description:createUpcomingworkDto.description,
             photo:createUpcomingworkDto.photo,
-            amountToBeRaised: createUpcomingworkDto.amountToBeRaised
+            amountToBeRaised: Number(createUpcomingworkDto.amountToBeRaised)
           }
        
         return this.databaseService.upcomingWork.create({data});
@@ -49,7 +49,9 @@ export class UpcomingworkService {
           }
           return await this.databaseService.upcomingWork.update({
             where: { id: id },
-            data: updateUpcomingworkDto,
+            data: {...updateUpcomingworkDto,
+              amountToBeRaised: updateUpcomingworkDto.amountToBeRaised ? Number(updateUpcomingworkDto.amountToBeRaised) : updateUpcomingworkDto.amountToBeRaised,
+            }
           });
         } catch (error) {
           return { message: 'An error occurred during the update', error: error.message };

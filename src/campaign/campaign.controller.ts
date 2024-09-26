@@ -20,10 +20,7 @@ export class CampaignController {
     if (!file) {
       throw new BadRequestException('Photo must be provided');
     }
-    console.log('File:', file);
-    console.log('CreateCampaignDto:', createCampaignDto);
     const photoUrl = await this.cloudinaryService.uploadImage(file);
-    console.log('Cloudinary URL:', photoUrl);
     return this.campaignService.create({
       ...createCampaignDto,
       photo: photoUrl, // Use the URL returned by Cloudinary

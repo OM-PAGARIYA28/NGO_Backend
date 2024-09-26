@@ -1,20 +1,30 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Request, UnauthorizedException, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UpcomingworkService } from './upcomingwork.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 import { CreateUpcomingworkDto } from './dto/create-upcomingwork.dto';
 import { UpdateUpcomingworkDto } from './dto/update-upcomingwork.dto';
+import { CloudinaryService } from '../cloudinary.service';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('upcomingwork')
 export class UpcomingworkController {
-    constructor(private readonly upcomingworkService: UpcomingworkService) {}
+    constructor(private readonly upcomingworkService: UpcomingworkService,private readonly cloudinaryService: CloudinaryService) {}
 
     @UseGuards(JwtAuthGuard)
     @Post('create')
-    create(@Request() req, @Body() createUpcomingWorkDto: CreateUpcomingworkDto) {
+    @UseInterceptors(FileInterceptor('photo'))
+    async create(@Request() req,@UploadedFile() file: Express.Multer.File, @Body() createUpcomingWorkDto: CreateUpcomingworkDto) {
       if (req.user.role !== 'ADMIN') {
         throw new UnauthorizedException('Access restricted to admins');
       }
-      return this.upcomingworkService.create(createUpcomingWorkDto);
+      if (!file) {
+        throw new BadRequestException('Photo must be provided');
+      }
+      const photoUrl = await this.cloudinaryService.uploadImage(file);
+      return this.upcomingworkService.create({
+        ...createUpcomingWorkDto,
+        photo:photoUrl,
+      });
     }
   
     @Get('getallupcomingcampaign')

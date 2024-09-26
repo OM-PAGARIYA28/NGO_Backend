@@ -32,7 +32,11 @@ export class AboutusService {
     
     return this.databaseService.aboutUs.update({
       where: { id },
-      data: updateAboutDto,
+      data: {
+        ...updateAboutDto,
+        // Retain the existing image if no new image is provided
+        image: updateAboutDto.image || existingAboutUs.image,
+    },
     });
         } catch (error) {
             return {

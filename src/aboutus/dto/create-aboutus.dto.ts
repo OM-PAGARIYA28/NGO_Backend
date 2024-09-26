@@ -11,5 +11,6 @@ export class CreateAboutDto{
 
     @IsNotEmpty()
     @IsString()
-    image: string;
+    @IsOptional()
+    image?: string;
 }

@@ -41,7 +41,7 @@ export class CampaignController {
   }
 
   @UseGuards(JwtAuthGuard)
-@Patch(':id')
+@Patch('update/:id')
 @UseInterceptors(FileInterceptor('photo'))  // Intercept file upload for the 'photo' field
 async update(
   @Request() req, 

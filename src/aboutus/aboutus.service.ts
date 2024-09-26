@@ -45,7 +45,7 @@ export class AboutusService {
         }
     }
 
-    async findOne() {
+    async findOne(id:string) {
         const aboutUs = await this.databaseService.aboutUs.findFirst();
         if (!aboutUs) {
           throw new Error('About Us section not found');

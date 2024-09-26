@@ -48,10 +48,11 @@ async update(@Request() req, @Param('id') id: string,@UploadedFile() file: Expre
   return this.aboutusService.update(+id, updateAboutUsDto);
 }
 
-@Get('getaboutus')
-  async findOne() {
-    return this.aboutusService.findOne();
-  }
+@Get('getaboutus/:id')
+async findOne(@Param('id') id: string) {
+  return this.aboutusService.findOne(id);
+}
+
 
 
 

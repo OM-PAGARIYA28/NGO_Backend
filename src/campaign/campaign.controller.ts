@@ -40,7 +40,7 @@ export class CampaignController {
     return this.campaignService.findOne(+id);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
 @Patch(':id')
 @UseInterceptors(FileInterceptor('photo'))  // Intercept file upload for the 'photo' field
 async update(

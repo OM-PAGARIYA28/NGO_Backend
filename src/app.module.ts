@@ -9,7 +9,7 @@ import { CounterbarModule } from './counterbar/counterbar.module';
 import { UpcomingworkModule } from './upcomingwork/upcomingwork.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CloudinaryService } from 'cloudinary.service';
+import { CloudinaryService } from 'src/cloudinary.service';
 
 @Module({
   imports: [DatabaseModule, CampaignModule, UsersModule, AuthModule,ConfigModule.forRoot({isGlobal:true}), AboutusModule, CounterbarModule, UpcomingworkModule],

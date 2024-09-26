@@ -39,11 +39,21 @@ export class UpcomingworkController {
 
     @UseGuards(JwtAuthGuard)
   @Patch(':id')
-  update(@Request() req, @Param('id') id: string, @Body() updateupcomingCampaignDto: UpdateUpcomingworkDto) {
+  @UseInterceptors(FileInterceptor('photo'))
+  async update(@Request() req, @Param('id') id: string,@UploadedFile() file: Express.Multer.File, @Body() updateupcomingCampaignDto: UpdateUpcomingworkDto) {
     if (req.user.role !== 'ADMIN') {
       throw new UnauthorizedException('Access restricted to admins');
     }
-    return this.upcomingworkService.update(+id, updateupcomingCampaignDto);
+    let photoUrl: string | undefined;
+        if (file) {
+            // If a new photo is provided, upload it to Cloudinary
+            photoUrl = await this.cloudinaryService.uploadImage(file);
+        }
+        const updatedData = {
+          ...updateupcomingCampaignDto,
+          ...(photoUrl && { photo: photoUrl }), // Only update the photo if a new one is uploaded
+      };
+    return this.upcomingworkService.update(+id, updatedData);
   }
 
   @UseGuards(JwtAuthGuard)

@@ -3,7 +3,7 @@ import { CampaignService } from './campaign.service';
 import { CreateCampaignDto } from './dto/create-campaign.dto';
 import { UpdateCampaignDto } from './dto/update-campaign.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
-import { CloudinaryService } from 'src/cloudinary.service';
+import { CloudinaryService } from '../cloudinary.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('admin/campaign')

@@ -45,7 +45,7 @@ async update(@Request() req, @Param('id') id: string,@UploadedFile() file: Expre
             ...updateAboutUsDto,
             ...(imageUrl && { image: imageUrl }),  // Only update the image if a new one is uploaded
         };
-  return this.aboutusService.update(+id, updateAboutUsDto);
+  return this.aboutusService.update(+id, updatedData);
 }
 
 @Get('getaboutus/:id')

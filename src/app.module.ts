@@ -10,9 +10,12 @@ import { UpcomingworkModule } from './upcomingwork/upcomingwork.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CloudinaryService } from './cloudinary.service';
+import { ContactformService } from './contactform/contactform.service';
+import { ContactformController } from './contactform/contactform.controller';
+import { ContactformModule } from './contactform/contactform.module';
 
 @Module({
-  imports: [DatabaseModule, CampaignModule, UsersModule, AuthModule,ConfigModule.forRoot({isGlobal:true}), AboutusModule, CounterbarModule, UpcomingworkModule],
+  imports: [DatabaseModule, CampaignModule, UsersModule, AuthModule,ConfigModule.forRoot({isGlobal:true}), AboutusModule, CounterbarModule, UpcomingworkModule, ContactformModule],
   controllers: [AppController],
   providers: [AppService,CloudinaryService],
 })

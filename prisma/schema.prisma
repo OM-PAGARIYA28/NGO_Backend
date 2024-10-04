@@ -67,3 +67,11 @@ model UpcomingWork {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+model Contactform{
+  id Int @default(autoincrement()) @id
+  name String
+  email String @unique
+  subject String
+  message String
+}

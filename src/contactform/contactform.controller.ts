@@ -10,6 +10,7 @@ export class ContactformController {
 
     @Post()
   async createContactForm(@Body() body: { name: string; email: string; subject: string; message: string }) {
+    console.log('Received data:', body);
     return await this.contactformService.createContactForm(body);
   }
 

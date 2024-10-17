@@ -1,5 +1,4 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { CorsMiddleware } from './corsmiddleware'; // Import the middleware
 import { DatabaseModule } from './database/database.module';
 import { CampaignModule } from './campaign/campaign.module';
 import { UsersModule } from './users/users.module';
@@ -28,8 +27,4 @@ import { CloudinaryService } from './cloudinary.service';
   controllers: [AppController],
   providers: [AppService, CloudinaryService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(CorsMiddleware).forRoutes('*'); // Apply to all routes
-  }
-}
+export class AppModule {}

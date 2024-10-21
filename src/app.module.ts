@@ -11,6 +11,7 @@ import { ContactformModule } from './contactform/contactform.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CloudinaryService } from './cloudinary.service';
+import { GalleryModule } from './gallery/gallery.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CloudinaryService } from './cloudinary.service';
     CounterbarModule,
     UpcomingworkModule,
     ContactformModule,
+    GalleryModule,
   ],
   controllers: [AppController],
   providers: [AppService, CloudinaryService],

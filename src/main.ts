@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const corsOptions: CorsOptions = {
-    origin: ['http://localhost:5173','https://ngo-frontend-tan.vercel.app','https://ngo-frontend-tan.vercel.app/admin'], // Your frontend URL
+    origin: '*', // Your frontend URL
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true, // Enable credentials if you're using cookies or authorization
